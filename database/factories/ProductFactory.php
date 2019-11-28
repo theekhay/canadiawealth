@@ -14,7 +14,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'uuid' => $faker->uuid,
         'amount' => $faker->randomFloat(2, 1000, 100000),
         'vendorId' => $faker->randomDigitNotNull,
-        'name' => $faker->word,
+        'name' => $faker->unique()->word(),
         'category' => $faker->word,
         'description' => $faker->sentence(10),
         'image'  => $faker->imageUrl(),

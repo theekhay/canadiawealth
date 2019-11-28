@@ -2,32 +2,28 @@
 
 namespace App\Models;
 
-use App\Traits\UuidTrait;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-//cart
-use Gloudemans\Shoppingcart\Contracts\Buyable;
-use Gloudemans\Shoppingcart\CanBeBought;
-
 /**
- * Class Product
+ * Class ProductCategory
  * @package App\Models
- * @version November 27, 2019, 12:24 pm UTC
+ * @version November 28, 2019, 7:24 am UTC
  *
  */
-class Product extends Model implements Buyable
+class ProductCategory extends Model
 {
-    use SoftDeletes, UuidTrait, CanBeBought;
+    use SoftDeletes;
 
-    public $table = 'products';
-
+    public $table = 'product_categories';
+    
 
     protected $dates = ['deleted_at'];
 
 
+
     public $fillable = [
-        'name', 'code', 'amount', 'description', 'category', 'vendorId',
+        
     ];
 
     /**
@@ -45,8 +41,8 @@ class Product extends Model implements Buyable
      * @var array
      */
     public static $rules = [
-
+        
     ];
 
-
+    
 }
