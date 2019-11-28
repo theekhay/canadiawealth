@@ -1,9 +1,11 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\User;
+use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+
+const ALLOWED_LEVELS = [111, 222, 333];
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,23 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'firstname' => $faker->firstName,
+        'lastname' => $faker->lastName,
+        //'username' => $faker->lastName,
+
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
+
+        'address' => $faker->address,
+        'country' => $faker->address,
+        'state' => $faker->state,
+        'city' => $faker->city,
+        'postal_code' => $faker->postcode,
+        'telephone' => $faker->e164PhoneNumber,
+
+        'uuid' =>  $faker->uuid,
+
+        'level' => ALLOWED_LEVELS[random_int(0, count(ALLOWED_LEVELS) - 1)],
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
     ];

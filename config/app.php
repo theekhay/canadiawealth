@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //for laravel-permission
+        Spatie\Permission\PermissionServiceProvider::class
+
     ],
 
     /*
