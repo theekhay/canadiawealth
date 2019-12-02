@@ -18,8 +18,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home.index');
+Route::get('/cart/product/add/{product_id}', 'CartController@addProduct')->name('cart.product.add');
+Route::get('/cart/product/remove/{row_id}', 'CartController@removeProduct')->name('cart.product.remove');
 
+Route::get('/cart/product/increaseQty/{row_id}', 'CartController@increaseQty')->name('cart.product.increaseQty');
+Route::get('/cart/product/decreaseQty/{row_id}', 'CartController@decreaseQty')->name('cart.product.decreaseQty');
+
+Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
+Route::get('/payments/checkout', 'PaymentController@checkout')->name('payments.checkout');
+
+
+
+
+Route::resource('carts', 'CartController');
 
 Route::group(['middleware'=> ['auth'] ], function()
 {
@@ -28,5 +40,6 @@ Route::group(['middleware'=> ['auth'] ], function()
     Route::resource('orders', 'OrderController');
     Route::resource('payments', 'PaymentController');
 });
+
 
 

@@ -6,8 +6,10 @@ use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Repositories\OrderRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Flash;
+use Gloudemans\Shoppingcart\Cart;
 use Response;
 
 class OrderController extends AppBaseController

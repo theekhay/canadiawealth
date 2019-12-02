@@ -20,13 +20,14 @@ class CreateProductsTable extends Migration
             $table->string("name")->unique();
             $table->string("code")->unique()->nullable();
             $table->uuid("uuid")->unique();
-            $table->decimal('amount', 10, 2);
+            $table->decimal('price', 10, 2);
             $table->integer("vendorId");
             $table->string('description')->nullable();
             $table->string('category')->nullable();
 
             $table->string('image')->nullable();
             $table->string('measurement_unit')->nullable();
+            $table->float('weight')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

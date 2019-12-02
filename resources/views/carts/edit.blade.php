@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Edit Product "{!! $product->name !!}"
+            Cart
         </h1>
    </section>
    <div class="content">
@@ -11,10 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {{-- {!! Form::model($productCategories, ['route' => ['products.update', $productCategories->id], 'method' => 'patch']) !!} --}}
-                   {!! Form::model($product, ['route' => ['products.update', $product->id], 'method' => 'patch']) !!}
+                   {!! Form::model($cart, ['route' => ['carts.update', $cart->id], 'method' => 'patch']) !!}
 
-                        @include('products.fields')
+                        @include('carts.fields')
 
                    {!! Form::close() !!}
                </div>

@@ -6,24 +6,24 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Payment
+ * Class Cart
  * @package App\Models
- * @version November 28, 2019, 10:54 am UTC
+ * @version November 29, 2019, 7:21 am UTC
  *
  */
-class Payment extends Model
+class Cart extends Model
 {
     use SoftDeletes;
 
-    public $table = 'payments';
-
+    public $table = 'carts';
+    
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'customer_id'
+        
     ];
 
     /**
@@ -41,8 +41,8 @@ class Payment extends Model
      * @var array
      */
     public static $rules = [
-
+        
     ];
 
-
+    
 }

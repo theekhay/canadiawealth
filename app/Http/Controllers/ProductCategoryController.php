@@ -29,7 +29,7 @@ class ProductCategoryController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $productCategories = $this->productCategoryRepository->all();
+        $productCategories = $this->productCategoryRepository->paginate(15);
 
         return view('product_categories.index')
             ->with('productCategories', $productCategories);
@@ -54,13 +54,24 @@ class ProductCategoryController extends AppBaseController
      */
     public function store(CreateProductCategoryRequest $request)
     {
-        $input = $request->all();
 
-        $productCategory = $this->productCategoryRepository->create($input);
+        try{
+            $input = $request->all();
+            $this->productCategoryRepository->create($input);
+            Flash::success('Product Category saved successfully.');
+            return redirect(route('productCategories.index'));
+        }
+        catch( \Exception $e){
 
-        Flash::success('Product Category saved successfully.');
+            Flash::error('Product Category saved successfully.');
+            return redirect(route('productCategories.create'));
 
-        return redirect(route('productCategories.index'));
+            // Flash::error('Error saving prodiuct category.');
+            // return back()->withInput()->with('error', $e->getMessage() );
+
+        }
+
+
     }
 
     /**

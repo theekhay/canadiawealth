@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends AppBaseController
 {
@@ -29,7 +30,7 @@ class PaymentController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $payments = $this->paymentRepository->all();
+        $payments = $this->paymentRepository->paginate(15);
 
         return view('payments.index')
             ->with('payments', $payments);
@@ -143,14 +144,18 @@ class PaymentController extends AppBaseController
 
         if (empty($payment)) {
             Flash::error('Payment not found');
-
             return redirect(route('payments.index'));
         }
 
         $this->paymentRepository->delete($id);
-
         Flash::success('Payment deleted successfully.');
-
         return redirect(route('payments.index'));
+    }
+
+
+    public function checkout(){
+
+        $user = Auth::user();
+        return view('payments.checkout')->with('user', $user);
     }
 }

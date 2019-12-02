@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header" style="margin-bottom:30px">
-        <h1 class="pull-left">Payment History</h1>
+    <section class="content-header" style="margin-bottom:35px">
+        <h1 class="pull-left">Review Cart ({!! Cart::count() !!})</h1>
         <h1 class="pull-right">
-           {{-- <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('payments.create') !!}">Add New</a> --}}
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('home.index') !!}">Add More Products</a>
         </h1>
     </section>
     <div class="content">
@@ -15,7 +15,7 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                    @include('payments.table')
+                    @include('carts.items')
             </div>
         </div>
         <div class="text-center">

@@ -27,7 +27,7 @@ class Product extends Model implements Buyable
 
 
     public $fillable = [
-        'name', 'code', 'amount', 'description', 'category', 'vendorId',
+        'name', 'code', 'price', 'description', 'category', 'vendorId',
     ];
 
     /**

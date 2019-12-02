@@ -11,7 +11,7 @@
             <tr>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->code }}</td>
-                <td>{{  number_format( $product->amount, 2 ) }}</td>
+                <td>{{  number_format( $product->price, 2 ) }}</td>
                 <td>{{ $product->description }}</td>
 
                 <td>
@@ -27,4 +27,6 @@
         @endforeach
         </tbody>
     </table>
+
+    {{ $products->links("pagination::bootstrap-4") }}
 </div>

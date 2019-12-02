@@ -25,6 +25,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
     @yield('css')
+
+    <style>
+
+        .cart-iccon: {
+            font-size: 20px;
+            color: white;
+            top: 15px !important;
+        }
+    </style>
 </head>
 
 <body class="skin-blue sidebar-mini">
@@ -47,6 +56,14 @@
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+
+                        {{-- shopping cart --}}
+
+
+                    <li class="user user-menu ">
+                            <a href="{!! route('cart.checkout') !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-shopping-cart .cart-iccon"></i></a>
+                        </li>
+
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->

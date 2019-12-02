@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Payment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +16,9 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             ProductTableSeeder::class,
             ProductCategoryTableSeeder::class,
-            OrderTableSeeder::class
+            OrderTableSeeder::class,
+            PaymentTableSeeder::class
+
         ]);
     }
 }

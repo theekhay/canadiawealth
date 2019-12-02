@@ -2,14 +2,18 @@
     <table class="table" id="productCategories-table">
         <thead>
             <tr>
-                
-                <th colspan="3">Action</th>
+
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($productCategories as $productCategory)
             <tr>
-                
+                    <td>{!! $productCategory->name !!}</td>
+                    <td>{!! $productCategory->code !!}</td>
+
                 <td>
                     {!! Form::open(['route' => ['productCategories.destroy', $productCategory->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -23,4 +27,5 @@
         @endforeach
         </tbody>
     </table>
+    {{ $productCategories->links("pagination::bootstrap-4") }}
 </div>

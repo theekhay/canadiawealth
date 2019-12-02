@@ -14,3 +14,7 @@
     <a href="{!! route('payments.index') !!}"><i class="fa fa-edit"></i><span>Payments</span></a>
 </li>
 
+{{-- <li class="{{ Request::is('carts*') ? 'active' : '' }}">
+    <a href="{!! route('carts.index') !!}"><i class="fa fa-edit"></i><span>Carts</span></a>
+</li> --}}
+

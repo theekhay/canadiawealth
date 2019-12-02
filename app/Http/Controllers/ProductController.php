@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Repositories\ProductRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -30,8 +31,7 @@ class ProductController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $products = $this->productRepository->all();
-
+        $products = $this->productRepository->paginate(15);
         return view('products.index')
             ->with('products', $products);
     }
@@ -43,7 +43,8 @@ class ProductController extends AppBaseController
      */
     public function create()
     {
-        return view('products.create');
+        $productCategories = ProductCategory::pluck('name', 'id');
+        return view('products.create', ['productCategories' => $productCategories] );
     }
 
     /**
@@ -93,7 +94,6 @@ class ProductController extends AppBaseController
     public function edit($id)
     {
         $product = $this->productRepository->find($id);
-        //$product = Product::where('uuid', $id)->first();
 
         if (empty($product)) {
             Flash::error('Product not found');
@@ -101,7 +101,8 @@ class ProductController extends AppBaseController
             return redirect(route('products.index'));
         }
 
-        return view('products.edit')->with('product', $product);
+        $productCategories = ProductCategory::pluck('name', 'id');
+        return view('products.edit', ['productCategories' => $productCategories])->with('product', $product);
     }
 
     /**
