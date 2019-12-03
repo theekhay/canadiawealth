@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
 
             $table->string('image')->nullable();
             $table->string('measurement_unit')->nullable();
-            $table->float('weight')->nullable();
+            $table->float('weight')->default(1);
 
             $table->timestamps();
             $table->softDeletes();
