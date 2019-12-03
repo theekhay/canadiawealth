@@ -33,7 +33,8 @@ class CreateUsersTable extends Migration
             $table->uuid('uuid');
 
             $table->string('telephone')->nullable();
-            $table->integer('level');
+            $table->string('level');
+            $table->integer('role_id')->nullable();
 
             $table->softDeletes();
             $table->integer('deleted_by')->nullable();

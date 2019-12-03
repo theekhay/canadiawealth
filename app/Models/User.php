@@ -16,13 +16,16 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes, UuidTrait, HasRoles;
 
+
+    protected $guard_name = 'web';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'firstname', 'lastname', 'level'
+        'email', 'password', 'firstname', 'lastname', 'level', 'role_id'
     ];
 
     /**
@@ -79,6 +82,6 @@ class User extends Authenticatable
      */
     public function getFullNameAttribute() {
 
-        return "{$this->first_name} {$this->last_name}";
+        return "{$this->firstname} {$this->lastname}";
     }
 }

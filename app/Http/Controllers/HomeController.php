@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App;
 
 class HomeController extends Controller
 {
@@ -24,9 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+
+        $products = Product::paginate(30);
         //use pagination here
         return view('home')
         ->with('products', $products);
+    }
+
+
+    public function lang($locale)
+    {
+        App::setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
     }
 }

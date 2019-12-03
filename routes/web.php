@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+Route::get("/", function () {
+
+    //App::setLocale($locale);
     return view('welcome');
 });
-
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home.index');
+Route::get('lang/{locale}', 'HomeController@lang');
 Route::get('/cart/product/add/{product_id}', 'CartController@addProduct')->name('cart.product.add');
 Route::get('/cart/product/remove/{row_id}', 'CartController@removeProduct')->name('cart.product.remove');
 
@@ -29,11 +31,15 @@ Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
 Route::get('/payments/checkout', 'PaymentController@checkout')->name('payments.checkout');
 
 
+Route::get('/register/admin', 'Auth\RegisterController@createAdmin')->name('register.admin');
+Route::post('/register/admin', 'Auth\RegisterController@storeAdmin')->name('store.admin');
+
+
 
 
 Route::resource('carts', 'CartController');
 
-Route::group(['middleware'=> ['auth'] ], function()
+Route::group(['middleware'=> ['auth'], 'prefix' => 'en' ], function()
 {
     Route::resource('products', 'ProductController');
     Route::resource('productCategories', 'ProductCategoryController');

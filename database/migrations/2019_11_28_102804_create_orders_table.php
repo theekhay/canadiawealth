@@ -18,7 +18,13 @@ class CreateOrdersTable extends Migration
 
             $table->integer('cart_id');
             $table->integer('user_id');
+
             $table->decimal('total_price', 10, 2);
+            $table->string("shipping_address")->nullable();
+            $table->string("payment_method")->nullable();
+            $table->string("order_reference")->nullable();
+            $table->string("delivery_method")->nullable();
+
             $table->timestamp('checkout_date');
             $table->uuid('uuid')->unique();
 

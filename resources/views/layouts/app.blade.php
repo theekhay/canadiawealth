@@ -61,7 +61,7 @@
 
 
                     <li class="user user-menu ">
-                            <a href="{!! route('cart.checkout') !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-shopping-cart .cart-iccon"></i></a>
+                    <a href="{!! route('cart.checkout') !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-shopping-cart .cart-iccon"><span style="top:-10px;" class="badge">{!! Cart::count() !!}</span></i></a>
                         </li>
 
                         <!-- User Account Menu -->

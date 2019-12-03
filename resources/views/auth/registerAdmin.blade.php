@@ -34,13 +34,13 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="{{ url('/home') }}"><b>Register User</a>
+        <a href="{{ url('/home') }}"><b>Register Admin</a>
     </div>
 
     <div class="register-box-body">
-        <p class="login-box-msg">Register a new user</p>
+        <p class="login-box-msg">Register a new Administrator</p>
 
-        <form method="post" action="{{ url('/register') }}">
+        <form method="post" action="{{ url('/register/admin') }}">
 
             {!! csrf_field() !!}
 
@@ -76,21 +76,6 @@
                     </span>
                 @endif
             </div>
-
-            <div class="form-group has-feedback{{ $errors->has('usertype') ? ' has-error' : '' }}">
-                    <select type="text" class="form-control" name="usertype" value="{{ old('usertype') }}" placeholder="Email">
-                        <option value="">select a user type</option>
-                        <option value="user">Regular</option>
-                        <option value="seller">Seller</option>
-                    </select>
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-
-                    @if ($errors->has('usertype'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('usertype') }}</strong>
-                        </span>
-                    @endif
-                </div>
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
                 <input type="password" class="form-control" name="password" placeholder="Password">
@@ -130,7 +115,7 @@
             </div>
         </form>
 
-        <a href="{{ url('/login') }}" class="text-center">Already a user</a>
+        <a href="{{ url('/login') }}" class="text-center"> Already an admin?</a>
     </div>
     <!-- /.form-box -->
 </div>

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class PaymentController extends AppBaseController
 {
@@ -56,11 +57,8 @@ class PaymentController extends AppBaseController
     public function store(CreatePaymentRequest $request)
     {
         $input = $request->all();
-
         $payment = $this->paymentRepository->create($input);
-
         Flash::success('Payment saved successfully.');
-
         return redirect(route('payments.index'));
     }
 
@@ -123,9 +121,7 @@ class PaymentController extends AppBaseController
         }
 
         $payment = $this->paymentRepository->update($request->all(), $id);
-
         Flash::success('Payment updated successfully.');
-
         return redirect(route('payments.index'));
     }
 
@@ -158,4 +154,5 @@ class PaymentController extends AppBaseController
         $user = Auth::user();
         return view('payments.checkout')->with('user', $user);
     }
+
 }

@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserLevel;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Laracasts\Flash\Flash;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -65,12 +68,42 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'level' => 111,
+            'level' => $data['usertype']
         ]);
+
+    }
+
+
+    protected function createAdmin()
+    {
+        return view('auth.registerAdmin');
+
+    }
+
+    protected function storeAdmin( Request $request)
+    {
+        $data = $request->all();
+        $data['level'] = 'admin';
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
+
+        if($user){
+            $user->assignRole( $user->level );
+        }
+
+        return redirect(route('home.index'));
+
+    }
+
+
+    protected function registered(Request $request, $user)
+    {
+        $user->assignRole( $user->level );
     }
 }

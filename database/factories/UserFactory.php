@@ -5,7 +5,7 @@ use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
-const ALLOWED_LEVELS = [111, 222, 333];
+const ALLOWED_LEVELS = ['user', 'admin', 'seller'];
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,6 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
-        //'username' => $faker->lastName,
 
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
@@ -37,6 +36,7 @@ $factory->define(User::class, function (Faker $faker) {
         'uuid' =>  $faker->uuid,
 
         'level' => ALLOWED_LEVELS[random_int(0, count(ALLOWED_LEVELS) - 1)],
+        'role_id' => $faker->randomDigitNotNull,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
     ];
