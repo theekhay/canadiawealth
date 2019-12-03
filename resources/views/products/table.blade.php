@@ -3,7 +3,11 @@
         <thead>
             <tr>
 
-                <th colspan="3">Action</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
