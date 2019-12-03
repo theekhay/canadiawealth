@@ -178,7 +178,7 @@ return [
         //for laravel-permission
         Spatie\Permission\PermissionServiceProvider::class,
 
-        Laracasts\Flash\FlashServiceProvider::class
+        //Laracasts\Flash\FlashServiceProvider::class
 
     ],
 
