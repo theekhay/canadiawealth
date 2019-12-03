@@ -179,6 +179,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
 
         //Laracasts\Flash\FlashServiceProvider::class
+        Laracasts\Flash\FlashServiceProvider::class,
+        //'Laracasts\Flash\FlashServiceProvider'
 
     ],
 
