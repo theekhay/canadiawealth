@@ -4,7 +4,7 @@
 <div class="container">
 
     <div class="row" style="margin-top:20px">
-        @include('flash::message')
+        {{-- @include('flash::message') --}}
     </div>
 
     <div class="row" style="margin-bottom:10px">
