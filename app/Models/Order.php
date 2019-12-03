@@ -26,7 +26,7 @@ class Order extends Model
 
 
     public $fillable = [
-        'cart_id', 'checkout_date', 'uuid', 'total_price'
+        'cart_id', 'checkout_date', 'total_price', 'user_id', 'shipping_address', 'payment_method', 'order_reference', 'delivery_method'
     ];
 
     /**

@@ -16,16 +16,16 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('cart_id');
+            $table->string('cart_id');
             $table->integer('user_id');
 
             $table->decimal('total_price', 10, 2);
             $table->string("shipping_address")->nullable();
-            $table->string("payment_method")->nullable();
-            $table->string("order_reference")->nullable();
+            $table->string("payment_method");
+            $table->string("order_reference");
             $table->string("delivery_method")->nullable();
 
-            $table->timestamp('checkout_date');
+            $table->timestamp('checkout_date')->default( now());
             $table->uuid('uuid')->unique();
 
             $table->timestamps();

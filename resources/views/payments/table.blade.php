@@ -4,7 +4,7 @@
             <tr>
 
                 <th>Customer</th>
-                <th>Vendor</th>
+                {{-- <th>Vendor</th> --}}
                 <th>Total </th>
                 <th>Amount paid</th>
                 <th>Payment method</th>
@@ -16,8 +16,8 @@
         <tbody>
         @foreach($payments as $payment)
             <tr>
-                <td>{!! $payment->customer_id !!}</td>
-                <td>{!! $payment->vendor_id !!}</td>
+                <td>{!! $payment->customer->full_name !!}</td>
+                {{-- <td>{!! $payment->vendor_id !!}</td> --}}
                 <td>{!! $payment->expected_payment !!}</td>
                 <td>{!! $payment->amount_paid !!}</td>
                 <td>{!! $payment->payment_method !!}</td>
@@ -26,7 +26,7 @@
                 <td>
                     {!! Form::open(['route' => ['payments.destroy', $payment->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{!! route('payments.show', [$payment->id]) !!}" title="view cart" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                        <a href="{!! route('order.showCart', [$payment->order_id]) !!}" title="view cart" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                         {{-- <a href="{!! route('payments.edit', [$payment->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a> --}}
                         {{-- {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!} --}}
                     </div>

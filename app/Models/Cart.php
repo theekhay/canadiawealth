@@ -13,17 +13,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Cart extends Model
 {
-    use SoftDeletes;
 
-    public $table = 'carts';
-    
+    public $table = 'shoppingcart';
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        
+
     ];
 
     /**
@@ -41,8 +40,14 @@ class Cart extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    // public function getOrders()
+    // {
+    //     return $this->hasMany( Product::class, 'product_id');
+    // }
+
+
+
 }

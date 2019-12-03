@@ -19,8 +19,6 @@ class CartService
 
         $cartItem = Cart::add( $product->id, $product->name, $quantity, $product->price, $product->weight );
         $cartItem->associate('Product');
-        session(['cartItemCount' => Cart::count() ]);
-        //session(['cartRowID' => $cartItem->rowId ]);
 
     }
 
@@ -58,6 +56,10 @@ class CartService
         return Cart::total();
     }
 
+
+    /**
+     * Get the count of unique items in a cart
+     */
     public function uniqueCount(){
         return Cart::content()->count();
     }

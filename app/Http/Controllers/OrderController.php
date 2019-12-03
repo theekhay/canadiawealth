@@ -6,11 +6,16 @@ use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Repositories\OrderRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Cart as AppCart;
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Flash;
-use Gloudemans\Shoppingcart\Cart;
+use Illuminate\Support\Facades\Auth;
+use Ramsey\Uuid\Uuid;
 use Response;
+use Cart;
 
 class OrderController extends AppBaseController
 {
@@ -55,11 +60,47 @@ class OrderController extends AppBaseController
      */
     public function store(CreateOrderRequest $request)
     {
-        $input = $request->all();
+        //$input = $request->all();
 
-        $order = $this->orderRepository->create($input);
+        //$order = $this->orderRepository->create($input);
 
-        Flash::success('Order saved successfully.');
+        //Flash::success('Order saved successfully.');
+
+        try{
+            $identifier = Uuid::uuid4()->toString();
+            $totalPrice = Cart::total();
+            $cart = Cart::store( $identifier );
+            $user_id = Auth::id();
+            $user = Auth::user();
+
+            $order = Order::create([
+                'cart_id' => $identifier,
+                'user_id' => $user_id,
+                'total_price' => floatval($totalPrice),
+                'shipping_address' => $user->address,
+                'payment_method' => 'credit_card',
+                'order_reference' => Uuid::uuid4()->toString(),
+                'delivery_method' => 'home'
+            ]);
+
+            $payment = Payment::create([
+
+                'customer_id' => $user_id,
+                'expected_payment' => floatval($totalPrice),
+                'amount_paid' => floatval($totalPrice),
+                'order_id' => $order->id,
+            ]);
+
+            Cart::destroy();
+            Flash::success("Payment processed successfully");
+            return redirect( route('home.index') );
+
+        }
+        catch(\Exception $e){
+
+            Flash::error("An error occured while trying to process this payment");
+            return redirect( route('home.index') );
+        }
 
         return redirect(route('orders.index'));
     }
@@ -153,5 +194,13 @@ class OrderController extends AppBaseController
         Flash::success('Order deleted successfully.');
 
         return redirect(route('orders.index'));
+    }
+
+
+    public function showCart($order_id){
+
+        $order = Order::find($order_id);
+        $cart = AppCart::where(['identifier' => $order->cart_id])->first();
+        dd( $cart->content);
     }
 }

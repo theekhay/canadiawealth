@@ -18,6 +18,8 @@
 
                 <div class="container">
 
+                {!! Form::open(['route' => 'orders.store']) !!}
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel panel-default">
@@ -158,13 +160,15 @@
                         </div>
                     </div>
 
-                    {!! Form::open(['route' => ['payments.store'] ]) !!}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-lg btn-success btn-group-lg">Make Payment</button>
-                        </div>
+                    {!! Form::open(['route' => 'orders.store']) !!}
+                    {{-- {!! Form::submit(['route' => ['payments.store'] ]) !!} --}}
+                    <div class="form-group col-sm-12">
+                        {!! Form::submit('Make Payments', ['class' => 'btn btn-primary']) !!}
+                        {{-- <button class="btn btn-primary btn-lg" type="submit">Make Payment</button> --}}
+                        <a href="{!! route('cart.checkout') !!}" class="btn btn-default">Cancel</a>
                     </div>
-                    {!! Form::close() !!}
+
+                {!! Form::close() !!}
 
 
                 </div>

@@ -19,6 +19,7 @@ class ProductController extends AppBaseController
 
     public function __construct(ProductRepository $productRepo)
     {
+        $this->middleware(['role:admin'])->only('create');
         $this->productRepository = $productRepo;
     }
 
@@ -57,8 +58,6 @@ class ProductController extends AppBaseController
     public function store(CreateProductRequest $request)
     {
         $input = $request->all();
-        $input["vendorId"] = 123;
-
         $this->productRepository->create($input);
         Flash::success('Product saved successfully.');
         return redirect(route('products.index'));

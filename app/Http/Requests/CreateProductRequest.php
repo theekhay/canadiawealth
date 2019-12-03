@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class CreateProductRequest extends FormRequest
 {
@@ -15,7 +16,8 @@ class CreateProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $user = Auth::user();
+        return $user->isAdmin();
     }
 
     /**

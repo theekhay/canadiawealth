@@ -46,6 +46,9 @@ class Product extends Model implements Buyable
      */
     public static $rules = [
 
+        // 'name' => 'required|string|unique:products,name',
+        // 'code' => 'nullable|unique:products,code|max:10|alpha_num',
+        // 'price' => 'required|numeric'
     ];
 
 

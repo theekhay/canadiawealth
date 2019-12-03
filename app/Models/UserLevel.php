@@ -14,24 +14,21 @@ class UserLevel extends Model
      */
 
     /**
-     * This marks a model instance as active
+     * This represents users who an adminstrators
      */
-    public const ADMIN = 111;
+    public const ADMIN = 'admin';
 
 
     /**
-     * This marks a model instance as awaiting approval
-     * typical, when a branchadmin creates certain resources that needs approval, it is marked as awaiting approval
-     * The church admin typically would approve such to get it mainstream
+     * This represents users who an vendors/merchants on the system.
      */
-    public const SELLER = 222;
+    public const SELLER = 'seller';
 
 
     /**
-     * These are resources that have been marked as inactive
-     * these should be done by the church admin
+     * These represents normal users on the system
      */
-    public const NORMAL = 333;
+    public const NORMAL = 'user';
 
 
 }

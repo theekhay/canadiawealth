@@ -27,7 +27,6 @@ class HomeController extends Controller
     {
 
         $products = Product::paginate(30);
-        //use pagination here
         return view('home')
         ->with('products', $products);
     }

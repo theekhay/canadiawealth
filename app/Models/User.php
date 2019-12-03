@@ -84,4 +84,19 @@ class User extends Authenticatable
 
         return "{$this->firstname} {$this->lastname}";
     }
+
+
+    /**
+     * Get all payments by a user.
+     */
+    public function getPayments()
+    {
+        return $this->hasMany( Payment::class, 'customer_id');
+    }
+
+
+    public function getOrders()
+    {
+        return $this->hasMany( Order::class, 'user_id');
+    }
 }

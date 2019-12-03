@@ -30,6 +30,8 @@ Route::get('/cart/product/decreaseQty/{row_id}', 'CartController@decreaseQty')->
 Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
 Route::get('/payments/checkout', 'PaymentController@checkout')->name('payments.checkout');
 
+Route::get('/order/showCart/{order_id}', 'OrderController@showCart')->name('order.showCart');
+
 
 Route::get('/register/admin', 'Auth\RegisterController@createAdmin')->name('register.admin');
 Route::post('/register/admin', 'Auth\RegisterController@storeAdmin')->name('store.admin');

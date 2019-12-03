@@ -23,6 +23,7 @@ class CartController extends AppBaseController
 
     public function __construct(CartRepository $cartRepo, CartService $cartService )
     {
+        $this->middleware(['role:user'])->only('checkout');
         $this->cartRepository = $cartRepo;
         $this->service = $cartService;
     }
@@ -162,7 +163,7 @@ class CartController extends AppBaseController
     }
 
 
-    public function addProduct( $product_id, $quantity = 3){
+    public function addProduct( $product_id, $quantity = 1){
 
         $product = Product::find($product_id);
         $this->service->add($product, $quantity);
@@ -206,6 +207,9 @@ class CartController extends AppBaseController
         return view('carts.checkout')->with('items', $items);
     }
 
+    /**
+     * increases the quatity of an item in the cart by 1
+     */
     public function increaseQty($row_id){
 
         $product = Cart::get($row_id);
