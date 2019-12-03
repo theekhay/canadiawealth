@@ -176,7 +176,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         //for laravel-permission
-        Spatie\Permission\PermissionServiceProvider::class
+        Spatie\Permission\PermissionServiceProvider::class,
+
+        Laracasts\Flash\FlashServiceProvider::class
 
     ],
 
