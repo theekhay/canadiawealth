@@ -27,7 +27,7 @@
     "require-dev": {
         "facade/ignition": "^1.4",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0",
+        "phpunit/phpunit": "^8.0"
     },
     "config": {
         "optimize-autoloader": true,
