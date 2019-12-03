@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string("code")->unique()->nullable();
             $table->uuid("uuid")->unique();
             $table->decimal('price', 10, 2);
-            $table->integer("vendorId");
+            //$table->integer("vendorId");
             $table->string('description')->nullable();
             $table->string('category')->nullable();
 
