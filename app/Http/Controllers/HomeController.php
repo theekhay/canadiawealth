@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Flash;
 
 class HomeController extends Controller
 {
@@ -37,5 +40,29 @@ class HomeController extends Controller
         App::setLocale($locale);
         session()->put('locale', $locale);
         return redirect()->back();
+    }
+
+    public function profile(){
+
+        $user = Auth::user();
+        return view('profile')->with('user', $user);
+    }
+
+
+    public function updateProfile($id, Request $request){
+
+        $user = User::find($id);
+
+        if (empty($user)) {
+
+            Flash::error('User not found');
+            return redirect(route('user.profile'));
+        }
+
+        $user->fill( $request->all() );
+        $user->save();
+
+        Flash::success('user updated successfully.');
+        return redirect(route('user.profile'));
     }
 }

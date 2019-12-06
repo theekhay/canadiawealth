@@ -18,7 +18,7 @@ $factory->define(Order::class, function (Faker $faker) {
         'checkout_date' => $faker->date('Y-m-d H:i:s'),
         'uuid' => $faker->uuid,
         'cart_id' => $faker->uuid,
-        'order_ref' => $faker->uuid,
+        'order_reference' => $faker->uuid,
         'payment_method' => 'cash',
         'delivery_method' => 'home'
     ];

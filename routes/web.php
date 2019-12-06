@@ -20,6 +20,10 @@ Route::get("/", function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home.index');
+Route::get('/user/profile', 'HomeController@profile')->name('user.profile');
+
+Route::patch('/user/update/{id}', 'HomeController@updateProfile')->name('user.update');
+
 Route::get('lang/{locale}', 'HomeController@lang');
 Route::get('/cart/product/add/{product_id}', 'CartController@addProduct')->name('cart.product.add');
 Route::get('/cart/product/remove/{row_id}', 'CartController@removeProduct')->name('cart.product.remove');
@@ -37,11 +41,9 @@ Route::get('/register/admin', 'Auth\RegisterController@createAdmin')->name('regi
 Route::post('/register/admin', 'Auth\RegisterController@storeAdmin')->name('store.admin');
 
 
-
-
 Route::resource('carts', 'CartController');
 
-Route::group(['middleware'=> ['auth'], 'prefix' => 'en' ], function()
+Route::group(['middleware'=> ['auth'], 'prefix' => App::getLocale() ], function()
 {
     Route::resource('products', 'ProductController');
     Route::resource('productCategories', 'ProductCategoryController');

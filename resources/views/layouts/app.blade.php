@@ -33,6 +33,11 @@
             color: white;
             top: 15px !important;
         }
+
+        .user-level{
+            color: white;
+            margin: 15px 30px;
+        }
     </style>
 </head>
 
@@ -59,9 +64,9 @@
 
                         {{-- shopping cart --}}
 
-
-                    <li class="user user-menu ">
-                    <a href="{!! route('cart.checkout') !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-shopping-cart .cart-iccon"><span style="top:-10px;" class="badge">{!! Cart::count() !!}</span></i></a>
+                        <li class="user user-menu user-level"> {!! Auth::user()->level !!}</li>
+                        <li class="user user-menu ">
+                            <a href="{!! route('cart.checkout') !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-shopping-cart .cart-iccon"><span style="top:-10px;" class="badge">{!! Cart::count() !!}</span></i></a>
                         </li>
 
                         <!-- User Account Menu -->
@@ -87,7 +92,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="{!! url('/user/profile') !!}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"

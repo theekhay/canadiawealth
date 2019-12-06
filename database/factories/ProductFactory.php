@@ -12,7 +12,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'updated_at' => $faker->date('Y-m-d H:i:s'),
         'uuid' => $faker->uuid,
         'price' => $faker->randomFloat(2, 1000, 100000),
-        'vendorId' => $faker->randomDigitNotNull,
+        //'vendorId' => $faker->randomDigitNotNull,
         'name' => $faker->unique()->word(),
         'category' => $faker->word,
         'description' => $faker->sentence(10),
