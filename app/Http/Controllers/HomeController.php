@@ -26,8 +26,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($locale = null)
     {
+        if($locale){
+            App::setLocale($locale);
+            session()->put('locale', $locale);
+        }
 
         $products = Product::paginate(30);
         return view('home')

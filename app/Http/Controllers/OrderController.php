@@ -24,6 +24,7 @@ class OrderController extends AppBaseController
 
     public function __construct(OrderRepository $orderRepo)
     {
+        $this->middleware(['role:admin'])->only('show');
         $this->orderRepository = $orderRepo;
     }
 

@@ -19,6 +19,8 @@ class PaymentController extends AppBaseController
 
     public function __construct(PaymentRepository $paymentRepo)
     {
+        $this->middleware(['role:admin'])->only('index');
+        $this->middleware(['role:user'])->only('checkout');
         $this->paymentRepository = $paymentRepo;
     }
 

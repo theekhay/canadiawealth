@@ -1,6 +1,6 @@
 
 <li class="{{ Request::is('products*') ? 'active' : '' }}">
-    <a href="{!! route('home.index') !!}"><i class="fa fa-edit"></i><span>Home</span></a>
+    <a href="{!! route('home.index') !!}"><i class="fa fa-edit"></i><span>@lang('menu.home')</span></a>
 </li>
 
 
