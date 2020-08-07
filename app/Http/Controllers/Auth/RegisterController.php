@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
+use App\Models\UserLevel;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Laracasts\Flash\Flash;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -49,7 +52,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -59,14 +64,46 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
+
         return User::create([
-            'name' => $data['name'],
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'level' => $data['usertype']
         ]);
+
+    }
+
+
+    protected function createAdmin()
+    {
+        return view('auth.registerAdmin');
+
+    }
+
+    protected function storeAdmin( Request $request)
+    {
+        $data = $request->all();
+        $data['level'] = 'admin';
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
+
+        if($user){
+            $user->assignRole( $user->level );
+        }
+
+        return redirect(route('home.index'));
+
+    }
+
+
+    protected function registered(Request $request, $user)
+    {
+        $user->assignRole( $user->level );
     }
 }

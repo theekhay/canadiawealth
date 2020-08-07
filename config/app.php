@@ -175,6 +175,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //for laravel-permission
+        Spatie\Permission\PermissionServiceProvider::class,
+
+        //Laracasts\Flash\FlashServiceProvider::class
+        Laracasts\Flash\FlashServiceProvider::class,
+        //'Laracasts\Flash\FlashServiceProvider'
+
     ],
 
     /*
@@ -231,5 +238,7 @@ return [
         'Flash'     => Laracasts\Flash\Flash::class,
 
     ],
+
+    'languages' => ['fr','de','en'],
 
 ];
